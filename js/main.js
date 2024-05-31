@@ -1,17 +1,17 @@
 const startInvestmentElmt = document.getElementById('startInvestment');
 const monthlyInvestmentElmt = document.getElementById('monthlyInvestment');
-const percentCDIElmt = document.getElementById('percentCDI');
+const percentCdiElmt = document.getElementById('percentCDI');
 const durationElmt = document.getElementById('duration');
 const durationOptsElmt = document.getElementById('durationOptions');
-const DIFeeElmt = document.getElementById('diFee');
+const diFeeElmt = document.getElementById('diFee');
 
 const dialogElmt = document.querySelector('dialog');
 const dialogContentElmt = dialogElmt.querySelector('dialog .modal-content');
 
 startInvestmentElmt.addEventListener('keydown', formatInputToCurrency);
 monthlyInvestmentElmt.addEventListener('keydown', formatInputToCurrency);
-percentCDIElmt.addEventListener('keydown', formatInputToPercentage);
-DIFeeElmt.addEventListener('keydown', formatInputToPercentage);
+percentCdiElmt.addEventListener('keydown', formatInputToPercentage);
+diFeeElmt.addEventListener('keydown', formatInputToPercentage);
 
 dialogElmt.querySelector('button').addEventListener('click', () => {
   dialogElmt.close();
@@ -20,20 +20,20 @@ dialogElmt.querySelector('button').addEventListener('click', () => {
 document.getElementById('calculate').addEventListener('click', () => {
   const startInvestment = toFloat(startInvestmentElmt.value);
   const monthlyInvestment = toFloat(monthlyInvestmentElmt.value);
-  const percentCDI = toFloat(percentCDIElmt.value);
-  const DIFee = toFloat(DIFeeElmt.value);
+  const percentCdi = toFloat(percentCdiElmt.value);
+  const diFee = toFloat(diFeeElmt.value);
   const duration = parseInt(durationElmt.value || 1);
   const durationType = durationOptsElmt.options[durationOptsElmt.selectedIndex].value;
 
   const months = durationType == 'year' ? duration * 12 : duration;
-  const DIFeeYearly = DIFee / 100;
-  const CDIFeeYearly = (percentCDI / 100) * DIFeeYearly;
-  const CDIFeeMonthly = Math.pow(1 + CDIFeeYearly, 1 / 12);
+  const diFeeYearly = diFee / 100;
+  const cdiFeeYearly = (percentCdi / 100) * diFeeYearly;
+  const cdiFeeMonthly = Math.pow(1 + cdiFeeYearly, 1 / 12);
 
   let grossTotal = startInvestment;
 
   for (let i = 0; i < months; i++) {
-    grossTotal *= CDIFeeMonthly;
+    grossTotal *= cdiFeeMonthly;
     grossTotal += monthlyInvestment;
   }
 
