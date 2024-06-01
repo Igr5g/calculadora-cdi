@@ -47,8 +47,8 @@ document.getElementById('calculate').addEventListener('click', () => {
   dialogContentElmt.innerHTML = `
     <h3>Resultados</h3>
     <p>Duração: <span class="result">${duration} ${
-      durationType == "month" ? (duration == 1 ? "Mês" : "Meses") : (duration == 1 ? "Ano" : "Anos")
-    }</span></p>
+    durationType == 'month' ? (duration == 1 ? 'Mês' : 'Meses') : duration == 1 ? 'Ano' : 'Anos'
+  }</span></p>
     <p>Investimento Inicial: <span class="result">${formatCurrency(startInvestment)}</span></p>
     ${
       startInvestment == totalInvested
@@ -69,23 +69,23 @@ document.getElementById('calculate').addEventListener('click', () => {
 
 document.getElementById('update-di').addEventListener('click', () => {
   fetch('https://www2.cetip.com.br/ConsultarTaxaDi/ConsultarTaxaDICetip.aspx')
-  .then((res) => {
-    if (!res.ok) throw new Error('Erro ao acessar a API: ' + res.statusText);
+    .then((res) => {
+      if (!res.ok) throw new Error('Erro ao acessar a API: ' + res.statusText);
 
-    return res.json();
-  })
-  .catch((error) => {
-    console.error(error);
-  })
-  .then((data) => {
-    diFeeElmt.value = (data.taxa + "%") || "10,40%"
+      return res.json();
+    })
+    .catch((error) => {
+      console.error(error);
+    })
+    .then((data) => {
+      diFeeElmt.value = data.taxa + '%' || '10,40%';
 
-    dialogContentElmt.innerHTML = `
-    <h3>Atualizado!</h3>
-    <p>Taxa atual: <span class="result">${data.taxa}%</span></p>
-    <p>Atualizado em: <span class="result">${data.dataTaxa}</span></p>
-  `;
-  })
-  
-  dialogElmt.showModal();
-})
+      dialogContentElmt.innerHTML = `
+        <h3>Atualizado!</h3>
+        <p>Taxa atual: <span class="result">${data.taxa}%</span></p>
+        <p>Atualizado em: <span class="result">${data.dataTaxa}</span></p>
+      `;
+
+      dialogElmt.showModal();
+    });
+});
