@@ -29,72 +29,40 @@
         <h1 class="title">Calcular CDI</h1>
 
         <div class="input-container">
-          <label for="startInvestment" class="label"
-            >Investimento inicial</label
-          >
-          <input
-            id="startInvestment"
-            class="input"
-            type="text"
-            placeholder="R$ 100,00"
-            value="R$ 525,00"
-          />
+          <label for="startInvestment" class="label">Investimento inicial</label>
+          <input id="startInvestment" class="input" type="text" placeholder="R$ 100,00" value="R$ 525,00" />
         </div>
 
         <div class="input-container">
-          <label for="monthlyInvestment" class="label"
-            >Investimento mensal</label
-          >
-          <input
-            id="monthlyInvestment"
-            class="input"
-            type="text"
-            placeholder="R$ 10,00"
-            value="R$ 0,00"
-          />
+          <label for="monthlyInvestment" class="label">Investimento mensal</label>
+          <input id="monthlyInvestment" class="input" type="text" placeholder="R$ 10,00" value="R$ 0,00" />
+        </div>
+
+        <div class="input-container">
+          <label for="diFee" class="label">Taxa DI</label>
+
+          <div class="input-with-content">
+            <input id="diFee" class="input" type="text" placeholder="10,04%" value="10,40%" />
+            <button class="btn" id="update-di">UPDATE</button>
+          </div>
         </div>
 
         <div class="input-container">
           <label for="percentCDI" class="label">Porcentagem do CDI</label>
-          <input
-            id="percentCDI"
-            class="input"
-            type="text"
-            placeholder="100,00%"
-            value="100,00%"
-          />
+          <input id="percentCDI" class="input" type="text" placeholder="100,00%" value="100,00%" />
         </div>
 
         <div class="input-container">
           <label for="duration" class="label">Duração do investimento</label>
 
           <div class="input-with-content">
-            <input
-              id="duration"
-              class="input"
-              type="number"
-              min="1"
-              max="1000"
-              placeholder="1"
-              value="6"
-            />
+            <input id="duration" class="input" type="number" min="1" max="1000" placeholder="1" value="6" />
 
             <select id="durationOptions" class="list" name="type" id="">
               <option selected value="month">Mês</option>
               <option value="year">Ano</option>
             </select>
           </div>
-        </div>
-
-        <div class="input-container">
-          <label for="diFee" class="label">Taxa DI</label>
-          <input
-            id="diFee"
-            class="input"
-            type="text"
-            placeholder="10,04%"
-            value="10,40%"
-          />
         </div>
 
         <button id="calculate" class="btn">Calcular</button>

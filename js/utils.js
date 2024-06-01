@@ -10,11 +10,7 @@ function toFloat(inputString) {
   return parseFloat(inputString.replace(/[^\d,]/g, '').replace(/,/g, '.'));
 }
 
-function formatCurrency(
-  number,
-  currencyPrefix = 'R$ ',
-  currencyLocale = 'pt-BR'
-) {
+function formatCurrency(number, currencyPrefix = 'R$ ', currencyLocale = 'pt-BR') {
   return (
     currencyPrefix +
     Number(number).toLocaleString(currencyLocale, {
@@ -28,14 +24,8 @@ const formatInputToPercentage = (e) => {
   formatInputToDecimalNumber(e, (formatted) => formatted + '%');
 };
 
-const formatInputToCurrency = (
-  e,
-  currencyPrefix = 'R$ ',
-  currencyLocale = 'pt-BR'
-) => {
-  formatInputToDecimalNumber(e, (formatted) =>
-    formatCurrency(toFloat(formatted), currencyPrefix, currencyLocale)
-  );
+const formatInputToCurrency = (e) => {
+  formatInputToDecimalNumber(e, (formatted) => formatCurrency(toFloat(formatted)));
 };
 
 const formatInputToDecimalNumber = (e, formatation) => {
@@ -46,9 +36,7 @@ const formatInputToDecimalNumber = (e, formatation) => {
   }
 
   let typedValue =
-    e.key === 'Backspace'
-      ? e.target.value.replace(/\D/g, '').slice(0, -1)
-      : e.target.value.replace(/\D/g, '') + e.key;
+    e.key === 'Backspace' ? e.target.value.replace(/\D/g, '').slice(0, -1) : e.target.value.replace(/\D/g, '') + e.key;
 
   let formatted = typedValue
     .replace(/^0+/, '')
