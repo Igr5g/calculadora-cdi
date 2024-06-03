@@ -6,6 +6,14 @@
   --green: #159E5C;
   --purple-nu-primary: #8a19d6;
   --purple-nu-secondary: #9c3bdc;
+
+  --foreground-color: #000000;
+  --background-color: #ffffff;
+}
+
+[data-theme="dark"] {
+  --foreground-color: #ffffff;
+  --background-color: #313338;
 }
 
 * {
@@ -22,6 +30,8 @@
   align-self: center;
   justify-self: center;
   padding: 1rem .5rem;
+  color: var(--foreground-color);
+  background-color: var(--background-color);
 }
 
 .modal::backdrop {
@@ -85,7 +95,7 @@
   height: 64px;
   width: 64px;
   border-radius: 50%;
-  color: white;
+  color: var(--gray);
   background-color: var(--purple-nu-secondary);
 }
 
@@ -93,10 +103,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: white;
   font-size: 18px;
   font-weight: bold;
   padding: 2rem 1rem;
+  color: var(--foreground-color);
   background-color: var(--purple-nu-primary);
 }
 
@@ -107,6 +117,8 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  color: var(--foreground-color);
+  background-color: var(--background-color);
 }
 
 .title {
@@ -135,9 +147,12 @@
   padding-block: 1rem;
   border-bottom: 2px solid var(--gray);
   width: 100%;
+  color: var(--foreground-color);
+  background-color: var(--background-color);
 }
 
 .input:focus {
+  /* color: var(--purple-nu-primary); */
   border-bottom: 2px solid var(--purple-nu-primary);
 }
 
@@ -148,9 +163,11 @@
 
 .list {
   height: 100%;
-  border: 3px solid var(--gray);
   border-radius: 0.75rem;
   padding-inline: 1rem;
+  border: 3px solid var(--gray);
+  color: var(--foreground-color);
+  background-color: var(--background-color);
 }
 
 .list:focus {
@@ -162,7 +179,7 @@
   border-radius: 23px;
   padding: 0.75rem;
   font-weight: bold;
-  color: white;
+  color: var(--gray);
   background-color: var(--purple-nu-primary);
   cursor: pointer;
   transition: 0.5s;
@@ -170,4 +187,29 @@
 
 .btn:hover {
   filter: brightness(80%);
+}
+
+.alternator {
+  height: 2rem;
+  width: 4rem;
+  border-radius: 1rem;
+  background-color: var(--purple-nu-secondary);
+  position: relative;
+  cursor: pointer;
+
+}
+
+.alternator .indicator {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  transform: scale(.8);
+  background-color: var(--gray);
+  position: absolute;
+  left: 0;
+  transition: .3s;
+}
+
+.alternator.on .indicator {
+  left: 2rem;
 }

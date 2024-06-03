@@ -8,6 +8,8 @@ const diFeeElmt = document.getElementById('diFee');
 const dialogElmt = document.querySelector('dialog');
 const dialogContentElmt = dialogElmt.querySelector('dialog .modal-content');
 
+const alternatorElmt = document.querySelector('.alternator');
+
 startInvestmentElmt.addEventListener('keydown', formatInputToCurrency);
 monthlyInvestmentElmt.addEventListener('keydown', formatInputToCurrency);
 percentCdiElmt.addEventListener('keydown', formatInputToPercentage);
@@ -88,4 +90,14 @@ document.getElementById('update-di').addEventListener('click', () => {
 
       dialogElmt.showModal();
     });
+});
+
+alternatorElmt.addEventListener('click', () => {
+  const currentTheme = localStorage.getItem('themeSystem') || 'light';
+  const newTheme = currentTheme == 'light' ? 'dark' : 'light';
+
+  localStorage.setItem('themeSystem', newTheme);
+  document.documentElement.setAttribute("data-theme", newTheme)
+
+  alternatorElmt.classList.toggle('on');
 });
